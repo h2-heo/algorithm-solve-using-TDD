@@ -52,9 +52,9 @@ internal class TriangleTest {
     fun testZeroes() {
         val triangle = Triangle.zeros(3)
         val result = Triangle.create(arrayOf(
-                intArrayOf(1),
-                intArrayOf(2, 3),
-                intArrayOf(4, 5, 6)
+                intArrayOf(0),
+                intArrayOf(0, 0),
+                intArrayOf(0, 0, 0)
         ))
         assertEquals(triangle, result)
     }
