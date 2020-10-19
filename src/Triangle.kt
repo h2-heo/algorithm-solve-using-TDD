@@ -1,5 +1,3 @@
-import kotlin.reflect.typeOf
-
 class Triangle {
     companion object {
         fun create(triangularArray: Array<IntArray>): Triangle {
