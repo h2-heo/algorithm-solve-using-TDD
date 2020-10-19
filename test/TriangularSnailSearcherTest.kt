@@ -21,7 +21,7 @@ internal class TriangularSnailSearcherTest {
                 intArrayOf(2, 0)
         ))
         val searcher = TriangularSnailSearcher(triangle, Point(1, 1), Direction.LEFT_UP)
-        assertFalse(searcher.hasNext())
+        assertTrue(searcher.hasNext())
     }
 
     @Test
@@ -35,17 +35,7 @@ internal class TriangularSnailSearcherTest {
     }
 
     @Test
-    fun testNext1() {
-        val triangle = Triangle.create(arrayOf(
-                intArrayOf(0)
-        ))
-        val searcher = TriangularSnailSearcher(triangle, triangle.top, Direction.LEFT_DOWN)
-        assertEquals(searcher.next(), Point(0, 0))
-        assertThrows<IllegalStateException> { searcher.next() }
-    }
-
-    @Test
-    fun testNext2() {
+    fun testNextCanBeCycle() {
         val triangle = Triangle.create(arrayOf(
                 intArrayOf(0),
                 intArrayOf(0, 0)
@@ -54,37 +44,28 @@ internal class TriangularSnailSearcherTest {
         assertEquals(searcher.next(), Point(0, 0))
         assertEquals(searcher.next(), Point(1, 0))
         assertEquals(searcher.next(), Point(1, 1))
-        assertThrows<IllegalStateException> { searcher.next() }
+        assertEquals(searcher.next(), Point(0, 0))
+        assertEquals(searcher.next(), Point(1, 0))
+        assertEquals(searcher.next(), Point(1, 1))
     }
 
     @Test
-    fun testNext3() {
+    fun testNextTurnsWhenMeetsNonZero() {
         val triangle = Triangle.create(arrayOf(
                 intArrayOf(1),
                 intArrayOf(0, 0),
-                intArrayOf(0, 0, 0)
+                intArrayOf(0, 0, 0),
+                intArrayOf(0, 0, 0, 0)
         ))
         val searcher = TriangularSnailSearcher(triangle, Point(1, 0), Direction.LEFT_DOWN)
         assertEquals(searcher.next(), Point(1, 0))
         assertEquals(searcher.next(), Point(2, 0))
-        assertEquals(searcher.next(), Point(2, 1))
-        assertEquals(searcher.next(), Point(2, 2))
-        assertEquals(searcher.next(), Point(1, 1))
-        assertThrows<IllegalStateException> { searcher.next() }
-    }
-
-    @Test
-    fun testNext4() {
-        val triangle = Triangle.create(arrayOf(
-                intArrayOf(1),
-                intArrayOf(2, 0),
-                intArrayOf(3, 0, 0),
-                intArrayOf(4, 5, 6, 7)
-        ))
-        val searcher = TriangularSnailSearcher(triangle, Point(2, 2), Direction.LEFT_UP)
+        assertEquals(searcher.next(), Point(3, 0))
+        assertEquals(searcher.next(), Point(3, 1))
+        assertEquals(searcher.next(), Point(3, 2))
+        assertEquals(searcher.next(), Point(3, 3))
         assertEquals(searcher.next(), Point(2, 2))
         assertEquals(searcher.next(), Point(1, 1))
         assertEquals(searcher.next(), Point(2, 1))
-        assertThrows<IllegalStateException> { searcher.next() }
     }
 }
