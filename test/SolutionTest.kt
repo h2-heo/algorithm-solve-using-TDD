@@ -3,6 +3,30 @@ import org.junit.jupiter.api.Test
 
 internal class SolutionTest {
     @Test
+    fun testSolutionWhen1() {
+        val n = 1
+        val answer = intArrayOf(1)
+        val solution = Solution()
+        assertArrayEquals(solution.solution(n), answer)
+    }
+
+    @Test
+    fun testSolutionWhen2() {
+        val n = 2
+        val answer = intArrayOf(1, 2, 3)
+        val solution = Solution()
+        assertArrayEquals(solution.solution(n), answer)
+    }
+
+    @Test
+    fun testSolutionWhen3() {
+        val n = 3
+        val answer = intArrayOf(1, 2, 6, 3, 4, 5)
+        val solution = Solution()
+        assertArrayEquals(solution.solution(n), answer)
+    }
+
+    @Test
     fun testSolutionWhen4() {
         val n = 4
         val answer = intArrayOf(1, 2, 9, 3, 10, 8, 4, 5, 6, 7)
