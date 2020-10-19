@@ -3,7 +3,7 @@ class TriangularSnailSearcher(val triangle: Triangle, startPoint: Point, startDi
     private var curDirection = startDirection
 
     fun hasNext(): Boolean {
-        return triangle.getValueAt(curPoint) == 0
+        return triangle.contains(curPoint) && triangle.getValueAt(curPoint) == 0
     }
 
     fun next(): Point {
@@ -17,20 +17,14 @@ class TriangularSnailSearcher(val triangle: Triangle, startPoint: Point, startDi
     }
 
     private fun moveToNext() {
-        var nextPoint = curPoint.moveTo(curDirection)
+        val nextPoint = curPoint.moveTo(curDirection)
         if (triangle.contains(nextPoint) && triangle.getValueAt(nextPoint) == 0) {
             curPoint = nextPoint
             return
         }
 
         curDirection = curDirection.next()
-        nextPoint = curPoint.moveTo(curDirection)
-        if (triangle.contains(nextPoint) && triangle.getValueAt(nextPoint) == 0) {
-            curPoint = nextPoint
-            return
-        }
-
-        throw IllegalStateException()
+        curPoint = curPoint.moveTo(curDirection)
     }
 
 }
