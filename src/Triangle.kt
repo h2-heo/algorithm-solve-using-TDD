@@ -5,6 +5,10 @@ class Triangle {
         fun zeros(n: Int): Triangle {
             TODO("Not yet implemented")
         }
+
+        fun create(triangularArray: Array<IntArray>): Triangle {
+            TODO("Not yet implemented")
+        }
     }
 
     fun toArray(): IntArray {
