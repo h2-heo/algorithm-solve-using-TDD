@@ -18,4 +18,12 @@ class Triangle {
     fun setValueAt(p: Point, v: Int) {
         TODO("Not yet implemented")
     }
+
+    fun getValueAt(nextPoint: Point): Int {
+        TODO("Not yet implemented")
+    }
+
+    fun contains(point: Point): Boolean {
+        TODO("Not yet implemented")
+    }
 }

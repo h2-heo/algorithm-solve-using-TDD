@@ -1,4 +1,9 @@
 enum class Direction {
     LEFT_DOWN,
-    LEFT_UP
+    RIGHT,
+    LEFT_UP;
+
+    fun next(): Direction {
+        TODO("Not yet implemented")
+    }
 }
