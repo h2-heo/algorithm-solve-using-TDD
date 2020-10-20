@@ -1,12 +1,12 @@
 class QuadTree {
 
     fun countElements(): IntArray {
-        TODO("Not yet implemented")
+        return QuadTreeElementCounter().visit(this)
     }
 
     companion object {
-        fun of(arr: Array<IntArray>): QuadTree {
-            TODO("Not yet implemented")
+        fun of(matrix: Array<IntArray>): QuadTree {
+            return QuadTreeMatrixParser().parse(matrix)
         }
     }
 }
