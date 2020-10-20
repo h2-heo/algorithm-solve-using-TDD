@@ -10,7 +10,7 @@ data class Rect(
     }
 
     companion object {
-        fun of(matrix: Array<IntArray>): Rect {
+        fun wholeOf(matrix: Array<IntArray>): Rect {
             TODO("Not yet implemented")
         }
     }

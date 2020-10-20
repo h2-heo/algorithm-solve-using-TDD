@@ -1,7 +1,7 @@
 class QuadTreeMatrixParser {
 
     fun parse(matrix: Array<IntArray>): QuadTree {
-        val wholeRect = Rect.of(matrix)
+        val wholeRect = Rect.wholeOf(matrix)
         return parse(matrix, wholeRect)
     }
 
