@@ -6,12 +6,21 @@ data class Rect(
 ) {
 
     fun splitQuad(): List<Rect> {
-        TODO("Not yet implemented")
+        val midY = (top + bottom) / 2
+        val midX = (left + right) / 2
+        return listOf(
+                Rect(top, left, midY, midX),
+                Rect(top, midX, midY, right),
+                Rect(midY, left, bottom, midX),
+                Rect(midY, midX, bottom, right),
+        )
     }
 
     companion object {
         fun wholeOf(matrix: Array<IntArray>): Rect {
-            TODO("Not yet implemented")
+            val height = matrix.size
+            val width = matrix[0].size
+            return Rect(0, 0, height, width)
         }
     }
 }
