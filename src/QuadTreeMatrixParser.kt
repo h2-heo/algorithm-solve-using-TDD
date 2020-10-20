@@ -19,10 +19,23 @@ class QuadTreeMatrixParser {
     }
 }
 
-private fun <T> Array<T>.getAnyValueIn(rect: Rect): Int {
-    TODO("Not yet implemented")
+private fun Array<IntArray>.getAnyValueIn(rect: Rect): Int {
+    val firstValue = this[rect.top][rect.left]
+    return firstValue
 }
 
 private infix fun Array<IntArray>.canCompressIn(rect: Rect): Boolean {
-    TODO("Not yet implemented")
+    return this hasSameValue rect
+}
+
+private infix fun Array<IntArray>.hasSameValue(rect: Rect): Boolean {
+    val v = this.getAnyValueIn(rect)
+    for (y in rect.top until rect.bottom ) {
+        for (x in rect.left until rect.right ) {
+            if (this[y][x] != v) {
+                return false
+            }
+        }
+    }
+    return true
 }
