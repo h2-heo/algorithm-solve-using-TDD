@@ -2,14 +2,16 @@ class QuadTree(
         val value: Int = -1,
 ) {
 
-    val children = listOf<QuadTree>()
+    private val _children = arrayListOf<QuadTree>()
+    val children: List<QuadTree>
+        get() = _children
 
     fun countElements(): IntArray {
         return QuadTreeElementCounter().visit(this)
     }
 
     fun isLeaf(): Boolean {
-        TODO("Not yet implemented")
+        return children.isEmpty()
     }
 
     companion object {
@@ -18,11 +20,15 @@ class QuadTree(
         }
 
         fun create(value: Int): QuadTree {
-            TODO("Not yet implemented")
+            require(value in 0..1)
+
+            return QuadTree(value)
         }
 
         fun create(q0: QuadTree, q1: QuadTree, q2: QuadTree, q3: QuadTree): QuadTree {
-            TODO("Not yet implemented")
+            val instance = QuadTree()
+            instance._children += listOf(q0, q1, q2, q3)
+            return instance
         }
     }
 }
