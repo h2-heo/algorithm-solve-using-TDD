@@ -1,7 +1,15 @@
-class QuadTree {
+class QuadTree(
+        val value: Int = -1,
+) {
+
+    val children = listOf<QuadTree>()
 
     fun countElements(): IntArray {
         return QuadTreeElementCounter().visit(this)
+    }
+
+    fun isLeaf(): Boolean {
+        TODO("Not yet implemented")
     }
 
     companion object {
