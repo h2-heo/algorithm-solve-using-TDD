@@ -18,10 +18,11 @@ data class Rect(
 
     fun points(): Sequence<Pair<Int, Int>> {
         return sequence {
-            yieldAll(listOf(
-                    Pair(0, 0), Pair(0, 1),
-                    Pair(1, 0), Pair(1, 1),
-            ))
+            for (y in top until bottom) {
+                for (x in left until right) {
+                    yield(Pair(y, x))
+                }
+            }
         }
     }
 
