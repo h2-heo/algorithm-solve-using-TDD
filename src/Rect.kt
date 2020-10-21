@@ -16,6 +16,10 @@ data class Rect(
         )
     }
 
+    fun points(): Sequence<Pair<Int, Int>> {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         fun wholeOf(matrix: Array<IntArray>): Rect {
             val height = matrix.size
