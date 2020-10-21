@@ -17,7 +17,12 @@ data class Rect(
     }
 
     fun points(): Sequence<Pair<Int, Int>> {
-        TODO("Not yet implemented")
+        return sequence {
+            yieldAll(listOf(
+                    Pair(0, 0), Pair(0, 1),
+                    Pair(1, 0), Pair(1, 1),
+            ))
+        }
     }
 
     companion object {
