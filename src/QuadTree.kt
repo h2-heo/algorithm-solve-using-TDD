@@ -6,19 +6,11 @@ class QuadTree(
     val children: List<QuadTree>
         get() = _children
 
-    fun countElements(): IntArray {
-        return QuadTreeElementCounter().visit(this)
-    }
-
     fun isLeaf(): Boolean {
         return children.isEmpty()
     }
 
     companion object {
-        fun of(matrix: Array<IntArray>): QuadTree {
-            return QuadTreeMatrixParser().parse(matrix)
-        }
-
         fun create(value: Int): QuadTree {
             require(value in 0..1)
 
