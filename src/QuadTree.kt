@@ -1,4 +1,4 @@
-class QuadTree(
+data class QuadTree(
         val value: Int = -1,
 ) {
 
