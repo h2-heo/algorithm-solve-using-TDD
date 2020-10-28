@@ -9,18 +9,32 @@ class HtmlParser {
     }
 
     fun getHeadBody(html: String): Pair<String, String> {
-        TODO("Not yet implemented")
+        val regex = """^<html(?:\s.*)?>\s*(<head>(?:.|\s)*</head>)\s*(<body>(?:(.|\s)*)</body>)\s*</html>$""".toRegex()
+        val matchResult = regex.find(html)
+        val (head, body) = matchResult!!.destructured
+        return Pair(head, body)
     }
 
     fun getUrl(headHtml: String): String {
-        TODO("Not yet implemented")
+        val regex = """<meta property="og:url" content="(.+)"/>""".toRegex()
+        val matchResult = regex.find(headHtml)
+        return matchResult!!.groupValues[1]
     }
 
     fun getLinks(bodyHtml: String): List<String> {
-        TODO("Not yet implemented")
+        val regex = """<a href="(.+)">""".toRegex()
+        return regex.findAll(bodyHtml).map { it.groupValues[1] }.toList()
     }
 
     fun getWords(bodyHtml: String): List<String> {
-        TODO("Not yet implemented")
+        val bodyText = getBodyText(bodyHtml)
+
+        val regex = """[A-Za-z]+""".toRegex()
+        return regex.findAll(bodyText).map { it.value }.toList()
+    }
+
+    private fun getBodyText(bodyHtml: String): String {
+        val regex = """<.*?>""".toRegex()
+        return regex.replace(bodyHtml, " ")
     }
 }
