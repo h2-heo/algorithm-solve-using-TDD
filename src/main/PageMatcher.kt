@@ -1,22 +1,30 @@
 class PageMatcher {
 
+    private val pages = arrayListOf<WebPage>()
+
     fun add(page: WebPage) {
-        TODO("Not yet implemented")
+        pages.add(page)
     }
 
     fun addAll(pages: Iterable<WebPage>): PageMatcher {
-        TODO("Not yet implemented")
+        this.pages.addAll(pages)
+        return this
     }
 
     fun getMatchingScore(page: WebPage, word: String): Double {
-        TODO("Not yet implemented")
+        return getBaseScore(page, word) + getLinkScore(page, word)
     }
 
     fun getBaseScore(page: WebPage, word: String): Double {
-        TODO("Not yet implemented")
+        return page.words.count { it.equals(word, ignoreCase = true) }.toDouble()
     }
 
     fun getLinkScore(page: WebPage, word: String): Double {
-        TODO("Not yet implemented")
+        val linkedPages = getLinkedPages(page)
+        return linkedPages.sumByDouble { getBaseScore(it, word) / it.links.size }
+    }
+
+    private fun getLinkedPages(page: WebPage): List<WebPage> {
+        return pages.filter { it.links.contains(page.url) }
     }
 }
