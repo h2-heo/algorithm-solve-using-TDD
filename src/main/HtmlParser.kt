@@ -16,13 +16,13 @@ class HtmlParser {
     }
 
     fun getUrl(headHtml: String): String {
-        val regex = """<meta property="og:url" content="(.+)"/>""".toRegex()
+        val regex = """<meta property="og:url" content="(.+?)"/>""".toRegex()
         val matchResult = regex.find(headHtml)
         return matchResult!!.groupValues[1]
     }
 
     fun getLinks(bodyHtml: String): List<String> {
-        val regex = """<a href="(.+)">""".toRegex()
+        val regex = """<a href="(.+?)">""".toRegex()
         return regex.findAll(bodyHtml).map { it.groupValues[1] }.toList()
     }
 

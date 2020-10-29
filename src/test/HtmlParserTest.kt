@@ -70,6 +70,22 @@ internal class HtmlParserTest {
     }
 
     @Test
+    fun `test parse() #4`() {
+        val html = "<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://a.com\"/>\n</head>  \n<body>\nBlind Lorem Blind ipsum dolor Blind test sit amet, consectetur adipiscing elit. \n<a href=\"https://b.com\"> Link to b </a><a href=\"https://c.com\"> Link to c on same line </a>\n</body>\n</html>"
+        val page = WebPage(
+                url = "https://a.com",
+                links = listOf("https://b.com", "https://c.com"),
+                words = listOf(
+                        "Blind", "Lorem", "Blind", "ipsum", "dolor", "Blind", "test", "sit", "amet",
+                        "consectetur", "adipiscing", "elit", "Link", "to", "b",
+                        "Link", "to", "c", "on", "same", "line",
+                ),
+        )
+
+        assertEquals(page, HtmlParser().parse(html))
+    }
+
+    @Test
     fun `test getHeadBody()`() {
         val html = """
             |<html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml">
