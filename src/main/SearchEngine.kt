@@ -15,7 +15,7 @@ class SearchEngine {
     }
 
     private fun getMatchingScore(page: WebPage, word: String): Double {
-        return PageMatcher()
+        return NaivePageMatcher()
                 .apply { addAll(pages) }
                 .getMatchingScore(page, word)
     }

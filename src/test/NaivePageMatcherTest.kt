@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
-internal class PageMatcherTest {
+internal class NaivePageMatcherTest {
 
     @Test
     fun `base score should be number of finding words (ignore case)`() {
@@ -14,7 +14,7 @@ internal class PageMatcherTest {
         val word = "hi"
         val baseScore = 5.0
 
-        val matcher = PageMatcher().apply { add(page) }
+        val matcher = NaivePageMatcher().apply { add(page) }
         assertEquals(baseScore, matcher.getBaseScore(page, word))
     }
 
@@ -41,7 +41,7 @@ internal class PageMatcherTest {
         val word = "hi"
         val linkScore = (2.0 / 2) + (3.0 / 1)
 
-        val matcher = PageMatcher().apply { addAll(pages) }
+        val matcher = NaivePageMatcher().apply { addAll(pages) }
         assertEquals(linkScore, matcher.getLinkScore(page, word))
     }
 
@@ -70,7 +70,7 @@ internal class PageMatcherTest {
         val linkScore = (2.0 / 2) + (3.0 / 1)
         val matchingScore = baseScore + linkScore
 
-        val matcher = PageMatcher().apply { addAll(pages) }
+        val matcher = NaivePageMatcher().apply { addAll(pages) }
         assertEquals(matchingScore, matcher.getMatchingScore(page, word))
     }
 }
