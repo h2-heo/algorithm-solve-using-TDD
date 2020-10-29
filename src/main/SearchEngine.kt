@@ -2,14 +2,12 @@ class SearchEngine {
 
     private val pages = arrayListOf<WebPage>()
 
-    fun register(page: WebPage): SearchEngine {
+    fun register(page: WebPage) {
         pages.add(page)
-        return this
     }
 
-    fun registerAll(pages: Iterable<WebPage>): SearchEngine {
+    fun registerAll(pages: Iterable<WebPage>) {
         pages.forEach { register(it) }
-        return this
     }
 
     fun search(word: String): WebPage? {
@@ -18,7 +16,7 @@ class SearchEngine {
 
     private fun getMatchingScore(page: WebPage, word: String): Double {
         return PageMatcher()
-                .addAll(pages)
+                .apply { addAll(pages) }
                 .getMatchingScore(page, word)
     }
 }

@@ -6,9 +6,8 @@ class PageMatcher {
         pages.add(page)
     }
 
-    fun addAll(pages: Iterable<WebPage>): PageMatcher {
+    fun addAll(pages: Iterable<WebPage>) {
         this.pages.addAll(pages)
-        return this
     }
 
     fun getMatchingScore(page: WebPage, word: String): Double {
