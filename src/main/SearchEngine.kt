@@ -1,9 +1,11 @@
 class SearchEngine {
 
     private val pages = arrayListOf<WebPage>()
+    private val matcher = FastPageMatcher()
 
     fun register(page: WebPage) {
         pages.add(page)
+        matcher.add(page)
     }
 
     fun registerAll(pages: Iterable<WebPage>) {
@@ -15,8 +17,6 @@ class SearchEngine {
     }
 
     private fun getMatchingScore(page: WebPage, word: String): Double {
-        return FastPageMatcher()
-                .apply { addAll(pages) }
-                .getMatchingScore(page, word)
+        return matcher.getMatchingScore(page, word)
     }
 }
